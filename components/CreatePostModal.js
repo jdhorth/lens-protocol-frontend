@@ -48,7 +48,7 @@ export default function CreatePostModal({
       const tx = await contract.post(postData)
       await tx.wait()
       setIsModalOpen(false)
-      
+
     } catch (err) {
       console.log('error: ', err)
     }
