@@ -5,6 +5,7 @@ import { trimString, generateRandomColor } from '../utils'
 import { Button, SearchInput, Placeholders } from '../components'
 import Image from 'next/image'
 import Link from 'next/link'
+import Footer from '../components/Footer'
 
 export default function Home() {
   const [profiles, setProfiles] = useState([])
@@ -12,7 +13,7 @@ export default function Home() {
   const [searchString, setSearchString] = useState('')
 
   useEffect(() => {
-    getRecommendedProfiles() 
+    getRecommendedProfiles()
   }, [])
 
   async function getRecommendedProfiles() {
@@ -58,7 +59,7 @@ export default function Home() {
       searchForProfile()
     }
   }
-  
+
   return (
     <div>
       <div className={searchContainerStyle}>
@@ -66,7 +67,7 @@ export default function Home() {
           placeholder='Search'
           onChange={e => setSearchString(e.target.value)}
           value={searchString}
-          onKeyDown={handleKeyDown}      
+          onKeyDown={handleKeyDown}
         />
         <Button
           onClick={searchForProfile}
@@ -75,7 +76,7 @@ export default function Home() {
       </div>
       <div className={listItemContainerStyle}>
         {
-           loadingState === 'loading' && <Placeholders number={6} />
+          loadingState === 'loading' && <Placeholders number={6} />
         }
         {
           profiles.map((profile, index) => (
@@ -85,12 +86,12 @@ export default function Home() {
                   <div className={profileContainerStyle} >
                     {
                       profile.picture && profile.picture.original ? (
-                      <Image
-                        src={profile.picture.original.url}
-                        className={profileImageStyle}
-                        width="42px"
-                        height="42px"
-                      />
+                        <Image
+                          src={profile.picture.original.url}
+                          className={profileImageStyle}
+                          width="42px"
+                          height="42px"
+                        />
                       ) : (
                         <div
                           className={
@@ -102,7 +103,7 @@ export default function Home() {
                         />
                       )
                     }
-                    
+
                     <div className={profileInfoStyle}>
                       <h3 className={nameStyle}>{profile.name}</h3>
                       <p className={handleStyle}>{profile.handle}</p>
@@ -117,6 +118,7 @@ export default function Home() {
           ))
         }
       </div>
+      <Footer />
     </div>
   )
 }
@@ -169,7 +171,6 @@ const nameStyle = css`
 
 const handleStyle = css`
   margin: 0px 0px 5px;
-  color: #b900c9;
 `
 
 const inputStyle = css`

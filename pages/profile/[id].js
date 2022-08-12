@@ -14,6 +14,7 @@ import { getSigner } from '../../utils'
 import ReactMarkdown from 'react-markdown'
 
 import LENSHUB from '../../abi/lenshub'
+import Footer from '../../components/Footer'
 
 export default function Profile() {
   const [profile, setProfile] = useState()
@@ -52,9 +53,9 @@ export default function Profile() {
       }, 2500)
       await tx.wait()
       console.log(`successfully unfollowed ... ${profile.handle}`)
-      } catch (err) {
-        console.log('error:', err)
-      }
+    } catch (err) {
+      console.log('error:', err)
+    }
   }
 
   async function getProfile() {
@@ -139,9 +140,9 @@ export default function Profile() {
               userAddress && !profileOwner ? (
                 doesFollow ? (
                   <button
-                   onClick={unfollow}
-                   className={buttonStyle}
-                 >Unfollow</button>
+                    onClick={unfollow}
+                    className={buttonStyle}
+                  >Unfollow</button>
                 ) : (
                   <button
                     onClick={followUser}
@@ -182,12 +183,14 @@ export default function Profile() {
           }
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
 
 const bioStyle = css`
   font-weight: 500;
+  max-width: 200px;
 `
 
 const emptyPostTextStyle = css`

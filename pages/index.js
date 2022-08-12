@@ -6,6 +6,7 @@ import { trimString, generateRandomColor } from '../utils'
 import { Button, SearchInput, Placeholders } from '../components'
 import { AppContext } from '../context'
 import Link from 'next/link'
+import Footer from '../components/Footer'
 
 const typeMap = {
   Comment: "Comment",
@@ -20,7 +21,7 @@ export default function Home() {
   const { profile } = useContext(AppContext)
 
   useEffect(() => {
-    fetchPosts() 
+    fetchPosts()
   }, [profile])
 
   async function fetchPosts() {
@@ -76,7 +77,7 @@ export default function Home() {
           return post
         }
       })
-  
+
       setPosts(postData)
       if (!postData.length) {
         setLoadingState('no-results')
@@ -113,7 +114,7 @@ export default function Home() {
           )
         }
         {
-           loadingState === 'loading' && <Placeholders number={6} />
+          loadingState === 'loading' && <Placeholders number={6} />
         }
         {
           posts.map((post, index) => (
@@ -124,7 +125,7 @@ export default function Home() {
                   <div className={profileContainerStyle} >
                     {
                       post.profile.picture && post.profile.picture.original ? (
-                      <img src={post.profile.picture.original.url} className={profileImageStyle} />
+                        <img src={post.profile.picture.original.url} className={profileImageStyle} />
                       ) : (
                         <div
                           className={
@@ -136,7 +137,7 @@ export default function Home() {
                         />
                       )
                     }
-                    
+
                     <div className={profileInfoStyle}>
                       <h3 className={nameStyle}>{post.profile.name}</h3>
                       <p className={handleStyle}>{post.profile.handle}</p>
@@ -151,6 +152,7 @@ export default function Home() {
           ))
         }
       </div>
+      <Footer />
     </div>
   )
 }
