@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <nav>
             <div className={footerStyle}>
-                <h3>👨‍💻 nader.lens repo hAx by jdhorth.eth 👨‍💻</h3>
+                <h3>👨‍💻 nader.lens repo x hotlips.lens 👨‍💻</h3>
             </div>
         </nav>
     );
